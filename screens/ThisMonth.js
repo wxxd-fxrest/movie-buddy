@@ -1,0 +1,67 @@
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import styled from "styled-components";
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import Poster from "../components/Poster";
+
+const ThisMonth = ({isDark, item}) => {
+    const navigation = useNavigation();
+
+    const goDetail = () => {
+        navigation.navigate("Stack", {
+            screen: "Detail",
+            params: item,
+        });
+    };
+    return(
+        <MovieBox>
+            <HeaderTitle> 
+                <CommunityIcons name="movie-open-check-outline" size={15} isDark={isDark}/>
+                <CalendarDate isDark={isDark}> {item.Data.Calendar.split('/')[1]}월 {item.Data.Calendar.split('/')[2]}일 </CalendarDate>
+            </HeaderTitle>
+            <TouchableOpacity onPress={goDetail}>
+                <Poster path={item.Data.PosterImage} />
+            </TouchableOpacity>
+            <Title numberOfLines={1} isDark={isDark}> {item.Data.MovieName} </Title> 
+        </MovieBox>
+    )
+};
+
+
+const MovieBox = styled.View`
+    /* background-color: yellowgreen; */
+    flex-direction: column;
+    justify-content: center;
+    /* margin: 5px 0px; */
+`;
+
+const HeaderTitle = styled.View`
+    position: absolute;
+    z-index: 3;
+    top: 10px;
+    right: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+`;
+
+const CommunityIcons = styled(MaterialCommunityIcons)`
+    color: ${(props) => (props.isDark ? "white" : "black")};
+`;
+
+const CalendarDate = styled.Text`
+    color: ${(props) => (props.isDark ? "white" : "black")};
+    font-size: 10px;
+`;
+
+const Title = styled.Text`
+    color: ${(props) => (props.isDark ? "white" : "black")};
+    position: absolute;
+    bottom: 10px;
+    font-size: 12px;
+`;
+
+
+export default ThisMonth;
