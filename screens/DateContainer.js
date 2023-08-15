@@ -12,17 +12,9 @@ const DateContainer = ({isDark, selected, setSelected}) => {
 
     const customButton = (onConfirm) => {
         return (
-            <Button onPress={onConfirm}
-                style={{
-                    container: {
-                        width: "80%",
-                        marginHorizontal: "3%",
-                    },
-                    text: {fontSize: 20}
-                }}
-                primary
-                title="Submit"
-            />
+            <NextButton onPress={onConfirm} isDark={isDark}>
+                <NextButtonText isDark={isDark}> 다음 </NextButtonText>
+            </NextButton>
         )
     };
 
@@ -79,6 +71,22 @@ const CalendarBox = styled.View`
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 5px;
+`;
+
+const NextButton = styled.TouchableOpacity`
+    width: 35%;
+    padding: 10px 20px;
+    border-width: 1px;
+    border-radius: 20px;
+    border-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.pointColor)}; 
+    background-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.pointColor)}; 
+    justify-content: center;
+    align-items: center;
+`;
+
+const NextButtonText = styled.Text`
+    color: white;
+    font-size: 16px;
 `;
 
 export default DateContainer;

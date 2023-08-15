@@ -35,41 +35,46 @@ const FullFilm = ({ID, isEnabled, currentUser, isDark}) => {
     return (
         <Container isDark={isDark}>
             <FilmTitle isDark={isDark}> {ID.DocID.split('년')[0]}년 {ID.DocID.split('년')[1]} </FilmTitle>
-            {isEnabled === false ?
-            <FlatList horizontal
-                data={movieData}
-                showsHorizontalScrollIndicator={false}
-                ItemSeparatorComponent={WidthEmpty}
-                renderItem={({item}) => (
-                    <MovieBox onPress={() => {
-                        navigation.navigate("Stack", {
-                            screen: "Detail",
-                            params: item,
-                        });
-                    }}>
-                        <Poster path={item.Data.PosterImage} />
-                        <Title numberOfLines={1} isDark={isDark}> {item.Data.MovieName} </Title>
-                    </MovieBox>
-                )} 
-            /> : <FlatList 
-                data={movieData}
-                showsVerticalScrollIndicator={false}
-                ItemSeparatorComponent={horizontalEmpty}
-                renderItem={({item}) => (
-                    <VerticalMovieBox>
-                        <VerticalStar name="star" size={15} isDark={isDark} color={item.Data.Vote < 2.5 ? (isDark ? "white" : "black") : (isDark ? "yellow" : "red")}/>
-                        <VerticalVote isDark={isDark}> {item.Data.Vote} </VerticalVote>
-                        <TouchableOpacity onPress={() => {
+            {isEnabled === false &&
+                <FlatList horizontal
+                    data={movieData}
+                    keyExtractor={(item) => item.DocID + ""}
+                    showsHorizontalScrollIndicator={false}
+                    ItemSeparatorComponent={WidthEmpty}
+                    renderItem={({item}) => (
+                        <MovieBox onPress={() => {
                             navigation.navigate("Stack", {
                                 screen: "Detail",
                                 params: item,
                             });
-                        }}> 
-                            <VerticalTitle numberOfLines={1} isDark={isDark}> {item.Data.MovieName} </VerticalTitle>
-                        </TouchableOpacity>
-                    </VerticalMovieBox>
-                )} 
-            /> }
+                        }}>
+                            <Poster path={item.Data.PosterImage} />
+                            <Title numberOfLines={1} isDark={isDark}> {item.Data.MovieName} </Title>
+                        </MovieBox>
+                    )} 
+                /> }
+            {isEnabled === true &&
+                <FlatList 
+                    data={movieData}
+                    keyExtractor={(item) => item.DocID + ""}
+                    showsVerticalScrollIndicator={false}
+                    ItemSeparatorComponent={horizontalEmpty}
+                    renderItem={({item}) => (
+                        <VerticalMovieBox>
+                            <FontAwesome name="star" size={15} isDark={isDark} color={item.Data.Vote < 2.5 ? (isDark ? "white" : "black") : (isDark ? "yellow" : "red")}/>
+                            <VerticalVote isDark={isDark}> {item.Data.Vote} </VerticalVote>
+                            <TouchableOpacity onPress={() => {
+                                navigation.navigate("Stack", {
+                                    screen: "Detail",
+                                    params: item,
+                                });
+                            }}>
+                                <VerticalTitle numberOfLines={1} isDark={isDark}> {item.Data.MovieName} </VerticalTitle>
+                            </TouchableOpacity>
+                        </VerticalMovieBox>
+                    )} 
+                />
+            }
         </Container>
     )
 };
@@ -84,7 +89,7 @@ const Container = styled.View`
 const FilmTitle = styled.Text`
     background-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.pointColor)};
     color: ${(props) => (props.isDark ? "white" : "black")};
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-size: 12px;
     width: 80px;
 `;
@@ -114,8 +119,6 @@ const VerticalTitle = styled.Text`
     margin-top: 0px;
     background-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.pointColor)};
 `;
-
-const VerticalStar = styled(FontAwesome)``;
 
 const VerticalVote = styled.Text`
     color: ${(props) => (props.isDark ? "white" : "black")};

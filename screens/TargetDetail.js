@@ -5,8 +5,10 @@ import styled from "styled-components";
 import { darkTheme, lightTheme } from "../colors";
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { useNavigation } from "@react-navigation/native";
 
 const TargetDetail = ({isDark, currentUser, targetInfo}) => {
+    const navigation = useNavigation();
     const [targetData, setTargetData] = useState([]);
     const [month, setMonth] = useState('');
 
@@ -17,7 +19,7 @@ const TargetDetail = ({isDark, currentUser, targetInfo}) => {
             .onSnapshot(documentSnapshot => {
                 setTargetData(documentSnapshot.data());
                 setMonth(documentSnapshot.id);
-                // console.log('User data: ', documentSnapshot.id);
+                // console.log('User data: ', documentSnapshot.data());
                 // console.log(targetData.Preview);
         });
         
@@ -26,10 +28,20 @@ const TargetDetail = ({isDark, currentUser, targetInfo}) => {
 
     return(
         <Container>
-            {targetData ? targetData.Preview <= 0 ? 
-                <Title isDark={isDark}> 게이지 준비 중 </Title> 
-                : 
-                <ProgressBox>
+            {targetData ? targetData.Preview <= 0 ? <>
+                <Text isDark={isDark}> {month} </Text>
+                <PreparingContainer isDark={isDark}>
+                    <Preparing isDark={isDark}> 준비 중 입니다. </Preparing> 
+                </PreparingContainer>
+            </> : <ProgressBox onPress={() => {
+                navigation.navigate("Stack", {
+                    screen: "GoalAchieved",
+                    params: {
+                        month,
+                        currentUser: `${currentUser.email}`, 
+                    }
+                });
+            }}>
                     <ProgressHeader>
                         <MonthText isDark={isDark}> {month} </MonthText>
                         {targetData.Preview > targetData.target/1.4 ? 
@@ -63,13 +75,26 @@ const TargetDetail = ({isDark, currentUser, targetInfo}) => {
     )
 };
 
-const Container = styled.View`
-    /* background-color: wheat; */
+const Container = styled.View``;
+
+const Text = styled.Text`
+    /* background-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.pointColor)}; */
+    color: ${(props) => (props.isDark ? "grey" : "darkgrey")};
 `;
 
-const Title = styled.Text``;
+const PreparingContainer = styled.View`
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: solid 1px  ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.pointColor)}; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+`;
 
-const ProgressBox = styled.View`
+const Preparing = styled.Text`
+    color: ${(props) => (props.isDark ? "grey" : "darkgrey")};
+`;
+
+const ProgressBox = styled.TouchableOpacity`
     flex-direction: column;
     justify-content: center;
     /* background-color: yellowgreen; */

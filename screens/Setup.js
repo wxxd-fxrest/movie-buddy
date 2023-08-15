@@ -1,9 +1,11 @@
 import React from "react";
-import { Alert } from "react-native"; 
+import { Alert, useColorScheme } from "react-native"; 
 import styled from "styled-components";
 import auth from '@react-native-firebase/auth';
 
 const Setup = () => {
+    const isDark = useColorScheme() === 'dark';
+
     const onLogOut = () => {
         Alert.alert(
             'Log Out',
@@ -27,9 +29,8 @@ const Setup = () => {
 
     return(
         <Container>
-            <Text> 설정 </Text>
             <LogoutButton onPress={onLogOut}>
-                <LogoutButtonText> Logout </LogoutButtonText>
+                <LogoutButtonText isDark={isDark}> 로그아웃 </LogoutButtonText>
             </LogoutButton>
         </Container>
     )
@@ -37,15 +38,17 @@ const Setup = () => {
 
 const Container = styled.View``;
 
-const Text = styled.Text``;
-
-
 const LogoutButton = styled.TouchableOpacity`
-    background-color: grey;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0px;
 `;
 
 const LogoutButtonText = styled.Text`
-    color: "red"
+    color: red;
+    padding: 5px 5px;
+    background-color: ${(props) => (props.isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.3)")};
 `;
 
 

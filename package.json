@@ -30,6 +30,7 @@
     "react-native": "0.72.3",
     "react-native-calendars": "^1.1300.0",
     "react-native-date-ranges": "^2.5.0",
+    "react-native-dimension": "^1.0.6",
     "react-native-dotenv": "^3.4.9",
     "react-native-modal-datetime-picker": "^17.0.0",
     "react-native-progress": "^5.0.0",

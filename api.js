@@ -6,7 +6,7 @@ export const movieApi = {
         return fetch(
           `${REACT_BASE_URL}/search/movie?api_key=${REACT_APP_API_KEY}&language=en-US&page=1&query=${query}`
         ).then((res) => 
-			res.json()
+			  res.json()
 		);
     },
 };

@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import FullFilm from "./FullFilm";
 
-const FullFilmContainer = ({isDark, frilm, currentUser, scrollHiden, setScrollHiden}) => {
+const FullFilmContainer = ({isDark, frilm, currentUser, setScrollHiden}) => {
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     const [scroll, setScroll] = useState(40);
@@ -33,7 +33,8 @@ const FullFilmContainer = ({isDark, frilm, currentUser, scrollHiden, setScrollHi
                 :
                     <FullFilmTitle>
                         <MaterialCommunityIcons name="image-album" size={28} color={isDark ? "lightgrey" : "black"} />
-                    </FullFilmTitle>}
+                    </FullFilmTitle>
+                }
 
                 <SwitchButton isDark={isDark}
                     trackColor={{false: '#AFBED0', true: '#60748A'}}

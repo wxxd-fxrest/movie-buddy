@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useColorScheme } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import styled from "styled-components";
@@ -9,13 +8,17 @@ import Target from "./Target";
 import TargetList from "./TargetList";
 import AddButton from "../components/AddButton";
 
-const Profile = () => {
+const Profile = ({ navigation: {setOptions} }) => {
     const isDark = useColorScheme() === 'dark';
-    const navigation = useNavigation();
-    const [loading, setLoading] = useState(false);
     const [currentUser, setCurrentUser] = useState({});
     const [getUserData, setGetUserData] = useState([]);
     const [getProfileData, setGetProfileData] = useState([]);
+
+    useEffect(() => {
+        setOptions({
+            title: getUserData ? getUserData.name: "프로필",
+        }); 
+    }, [getUserData.name]); 
 
     useEffect(() => {
         setCurrentUser(auth().currentUser);
@@ -33,9 +36,6 @@ const Profile = () => {
                 setGetProfileData(documentSnapshot.data());
                 // console.log('User data: ', documentSnapshot.data());
         });
-
-        // console.log(getUserData);
-        // console.log(getProfileData);
   
         return () => {
             subscriber();

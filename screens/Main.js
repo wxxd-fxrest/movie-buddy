@@ -79,7 +79,7 @@ const Main = ({navigation, route: {params} }) => {
 
         return () => subscriber();
     }, [currentUser]);
-
+    
 
     return (
         <Container>
@@ -93,15 +93,22 @@ const Main = ({navigation, route: {params} }) => {
                     showsHorizontalScrollIndicator={false}
                     ItemSeparatorComponent={WidthEmpty}
                     renderItem={({item}) => (
-                        <ThisMonth isDark={isDark} item={item}/>
+                        <ThisMonth isDark={isDark} item={item} />
                     )} 
                 />
             </MovieContainer>
             
-            <ProgressBox scrollHiden={scrollHiden} isDark={isDark} currentUser={currentUser} movieLength={movieData.length} /> 
+            <ProgressBox isDark={isDark} 
+                currentUser={currentUser} 
+                movieLength={movieData.length} 
+                scrollHiden={scrollHiden} 
+            /> 
            
-            <FullFilmContainer isDark={isDark} frilm={frilm} currentUser={currentUser} 
-                scrollHiden={scrollHiden} setScrollHiden={setScrollHiden} />
+            <FullFilmContainer isDark={isDark} 
+                frilm={frilm} 
+                currentUser={currentUser} 
+                setScrollHiden={setScrollHiden} 
+            />
             
             {scrollHiden === false ? <AddButton /> : null}
             

@@ -6,6 +6,7 @@ import Write from "../screens/Write";
 import Setup from "../screens/Setup";
 import Review from "../screens/Review";
 import Detail from "../screens/Detail";
+import GoalAchieved from "../screens/GoalAchieved";
 
 const NativeStack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ const Stack = () => {
             screenOptions={{
                 headerBackVisible: true,
                 headerBackTitleVisible: true,
+                headerBackTitleVisible: false,
                 headerStyle: {
                     backgroundColor: isDark ? darkTheme.backColor : lightTheme.headerColor,
                 },
@@ -32,6 +34,7 @@ const Stack = () => {
             <NativeStack.Screen name="Review" component={Review}/>
             <NativeStack.Screen name="Setup" component={Setup}/>
             <NativeStack.Screen name="Detail" component={Detail}/>
+            <NativeStack.Screen name="GoalAchieved" component={GoalAchieved}/>
         </NativeStack.Navigator>
     )
 };

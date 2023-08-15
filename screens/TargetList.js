@@ -7,15 +7,6 @@ import TargetDetail from "./TargetDetail";
 
 const TargetList = ({isDark, currentUser}) => {
     const [targetInfo, setTargetInfo] = useState([]);
-    // const [movieData, setMovieData] = useState([]);
-
-    let timestamp = Date.now();
-    let date = new Date(timestamp);
-    let targetMonth = (
-        (date.getFullYear()+ "년")+
-        ('0' + (date.getMonth() + 1)).slice(-2)+ "월")
-        
-        // console.log(targetMonth);
 
     useEffect(() => {
         const subscriber = firestore()
@@ -29,7 +20,7 @@ const TargetList = ({isDark, currentUser}) => {
                     })
                 });
                 setTargetInfo(feedArray);
-                // console.log(targetInfo);
+                // console.log(targetInfo[0].DocData.orderBy);
             });
 
         return () => subscriber();
@@ -44,7 +35,8 @@ const TargetList = ({isDark, currentUser}) => {
             </ListHeader>
             <FlatList 
                 data={targetInfo} 
-                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                keyExtractor={(item) => item.DocData.orderBy}
                 // ItemSeparatorComponent={WidthEmpty}
                 renderItem={({item}) => (
                     <TargetDetail targetInfo={item} currentUser={currentUser} isDark={isDark}/>
@@ -57,16 +49,15 @@ const TargetList = ({isDark, currentUser}) => {
 };
 
 const Container = styled.View`
-    /* background-color: yellowgreen; */
     /* margin-top: 10px; */
-    /* height: 65%; */
+    height: 65%;
 `;
 
 const ListHeader = styled.View`
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
 `;
 
 const Title = styled.Text`

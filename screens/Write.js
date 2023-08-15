@@ -20,6 +20,8 @@ const Write = () => {
             enabled: false,
     });
 
+    // console.log("movieData", movieData.total_results);
+
     const onChangeText = (text) => setQuery(text);
 
     const onSubmit = () => {
@@ -41,23 +43,28 @@ const Write = () => {
                 onChangeText={onChangeText}
                 onSubmitEditing={onSubmit}
             /> 
+            {movieData ? 
+                movieData.total_results === 0 && <Title isDark={isDark}> 검색 결과가 없습니다. </Title> 
+            : null}
             {movieLoading ? <Loader /> : null}
             {movieData ? 
-            <FlatList data={movieData.results}
-                ItemSeparatorComponent={horizontalEmpty}
-                showsVerticalScrollIndicator={false}
-                renderItem={({item}) => (
-                    <VerticalList 
-                        isDark={isDark}
-                        keyExtractor={movieKeyExtractor}
-                        posterPath={item.poster_path}
-                        originalTitle={item.original_title}
-                        voteAverage={item.vote_average} 
-                        overview={item.overview}
-                        fullData={item}
-                    />
-                )}
-            /> : null}
+                <FlatList data={movieData.results}
+                    keyExtractor={(item) => item.id + ""}
+                    ItemSeparatorComponent={horizontalEmpty}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({item}) => (
+                        <VerticalList 
+                            isDark={isDark}
+                            keyExtractor={movieKeyExtractor}
+                            posterPath={item.poster_path}
+                            originalTitle={item.original_title}
+                            voteAverage={item.vote_average} 
+                            overview={item.overview}
+                            fullData={item}
+                        />
+                    )}
+                /> 
+            : null}
         </Container>
     )
 };
