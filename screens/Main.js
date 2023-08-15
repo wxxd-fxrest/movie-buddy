@@ -12,7 +12,6 @@ import FullFilmContainer from "./FullFilmContainer";
 
 const Main = ({navigation, route: {params} }) => {
     const isDark = useColorScheme() === 'dark';
-    // const navigation = useNavigation();
     const [currentUser, setCurrentUser] = useState({});
     const [movieData, setMovieData] = useState([]);
     const [frilm, setFilm] = useState([]);
@@ -129,7 +128,6 @@ const ImageM = styled.Image`
 const MovieContainer = styled.View`
     width: 100%;
     flex-direction: column;
-    /* height: 240px; */
     padding: 0px 20px;
     flex: 0.33;
 `;

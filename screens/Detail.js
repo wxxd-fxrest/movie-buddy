@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Alert, StyleSheet, Text, TouchableOpacity, useColorScheme, View } from "react-native";
+import { Alert, StyleSheet, Text, useColorScheme } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import StarRating from 'react-native-star-rating-widget';
 import { BlurView } from "expo-blur";

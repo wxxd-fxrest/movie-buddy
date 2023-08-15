@@ -26,7 +26,6 @@ const TargetList = ({isDark, currentUser}) => {
         return () => subscriber();
     }, [currentUser]);
 
-// 두가지 데이터 배열 렌더링(비교) 하려면 맵과 플라리스트를 같이 써야할 것 같음 
     return(
         <Container> 
             <ListHeader>
@@ -37,19 +36,15 @@ const TargetList = ({isDark, currentUser}) => {
                 data={targetInfo} 
                 showsVerticalScrollIndicator={false}
                 keyExtractor={(item) => item.DocData.orderBy}
-                // ItemSeparatorComponent={WidthEmpty}
                 renderItem={({item}) => (
                     <TargetDetail targetInfo={item} currentUser={currentUser} isDark={isDark}/>
                 )} 
             />
-                {/* {targetInfo.map((t, i) => (
-                ))} */}
         </Container>
     )
 };
 
 const Container = styled.View`
-    /* margin-top: 10px; */
     height: 65%;
 `;
 
@@ -57,7 +52,6 @@ const ListHeader = styled.View`
     flex-direction: row;
     justify-content: start;
     align-items: center;
-    /* margin-bottom: 5px; */
 `;
 
 const Title = styled.Text`

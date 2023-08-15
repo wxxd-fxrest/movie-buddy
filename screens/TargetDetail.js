@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import * as Progress from 'react-native-progress';
+import { useNavigation } from "@react-navigation/native";
 import firestore from '@react-native-firebase/firestore';
 import styled from "styled-components";
 import { darkTheme, lightTheme } from "../colors";
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-import { useNavigation } from "@react-navigation/native";
 
 const TargetDetail = ({isDark, currentUser, targetInfo}) => {
     const navigation = useNavigation();

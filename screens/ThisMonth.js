@@ -30,10 +30,8 @@ const ThisMonth = ({isDark, item}) => {
 
 
 const MovieBox = styled.View`
-    /* background-color: yellowgreen; */
     flex-direction: column;
     justify-content: center;
-    /* margin: 5px 0px; */
 `;
 
 const HeaderTitle = styled.View`

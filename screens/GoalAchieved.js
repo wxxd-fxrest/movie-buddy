@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, useColorScheme } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import firestore from '@react-native-firebase/firestore';
 import styled from "styled-components";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import Poster from "../components/Poster";
 import { darkTheme, lightTheme } from "../colors";
-import { useNavigation } from "@react-navigation/native";
 
 const GoalAchieved = ({ navigation: {setOptions}, route: {params} }) => {
     const [goalAchieved, setGoalAchieved] = useState([]);
@@ -80,10 +80,7 @@ const Container = styled.View`
 `;
 
 const MovieBox = styled.TouchableOpacity`
-    /* background-color: yellowgreen; */
     flex-direction: row;
-    /* align-items: center; */
-    /* width: 100%; */
 `;
 
 const RightContainer = styled.View`
@@ -92,9 +89,7 @@ const RightContainer = styled.View`
 `;
 
 const HeaderTitle = styled.View`
-    /* z-index: 3; */
     flex-direction: row;
-    /* justify-content: space-between; */
     align-items: flex-end;
 `;
 
@@ -121,7 +116,6 @@ const Title = styled.Text`
 
 const ReviewText = styled.Text`
     color: ${(props) => (props.isDark ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)")};
-    /* width: 60%; */
     font-size: 12px;
 `;
 

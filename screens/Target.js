@@ -3,9 +3,9 @@ import { Alert, LayoutAnimation } from "react-native";
 import firestore from '@react-native-firebase/firestore';
 import styled from "styled-components";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-import { darkTheme, lightTheme } from "../colors";
 import { Ionicons } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
+import { darkTheme, lightTheme } from "../colors";
 
 const Target = ({isDark, currentUser}) => {
     const [isModalVisible, setModalVisible] = useState(false);
@@ -152,9 +152,7 @@ const Target = ({isDark, currentUser}) => {
 };
 
 const TargetContainer = styled.View`
-    /* background-color: yellowgreen; */
     width: 100%;
-    /* height: 50px; */
     margin-top: 10px;
     padding-bottom: 10px;
     border-bottom-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
@@ -174,7 +172,6 @@ const TargetGuideContainer = styled.View`
 `;
 
 const LimitBox = styled.View`
-    /* background-color: black; */
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -191,7 +188,6 @@ const Limit = styled(LimitText)`
 `;
 
 const TargetNumberBox = styled.View`
-    /* background-color: black; */
     flex-direction: row;
     justify-content: center;
     align-items: center;

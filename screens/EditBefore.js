@@ -29,10 +29,8 @@ const EditBefore = ({isDark, getUserData, getProfileData, setEdit, edit, basicNa
 };
 
 const ProfileContainer = styled.View`
-    /* background-color: yellowgreen; */
     flex-direction: row;
     align-items: center;
-    /* padding: 10px 0px; */
     padding-bottom: 30px;
     border-bottom-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
     border-bottom-width: 1;
@@ -42,7 +40,6 @@ const ProfileImage = styled.Image`
     width: 100px;
     height: 100px;
     border-radius: 50px;
-    /* margin-right: 30px; */
     border: solid 1px ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
 `;
 
@@ -59,7 +56,6 @@ const ProfileEdit = styled.TouchableOpacity`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    /* width: max-content; */
     padding: 0px 8px;
     border-radius: 20px;
     border-width: 1px;

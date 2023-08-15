@@ -100,7 +100,6 @@ const Review = ({ navigation: {setOptions}, route: {params} }) => {
     return(
         <Container>
             <HeaderBox>
-                {/* <MovieTitle isDark={isDark}> {params.original_title} </MovieTitle> */}
                 <DateContainer isDark={isDark} setSelected={setSelected} selected={selected}/>
                 <VoteContainer>
                     <VoteText isDark={isDark}> {rating}/5 </VoteText>
@@ -130,7 +129,6 @@ const Review = ({ navigation: {setOptions}, route: {params} }) => {
                             review ? 
                                 "#F15F5F" : lightTheme.lightGreyColor}
                     />
-                    {/* <SaveButtonText> Save </SaveButtonText> */}
                 </SaveButton>
             </InputContainer>
         </Container>
@@ -139,7 +137,6 @@ const Review = ({ navigation: {setOptions}, route: {params} }) => {
 
 const Container = styled.View`
     flex-direction: column;
-    /* justify-content: space-between; */
     flex: 1;
     padding: 20px;
 `;
@@ -169,7 +166,6 @@ const VoteText = styled.Text`
 const StyledStarRating = styled(StarRating)``;
 
 const InputContainer = styled.View`
-    /* background-color: grey; */
     flex-direction: row;
     margin-top: 10px;
     border-top-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
@@ -177,27 +173,18 @@ const InputContainer = styled.View`
 `; 
 
 const SearchInput = styled.TextInput`
-    /* background-color: aliceblue; */
-    /* border: solid 1px ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.pointColor)}; */
-    /* padding: 10px 15px; */
     border-radius: 15px;
     width: 83%;
-    /* height: min-content; */
     margin: 20px auto;
     margin-bottom: 40px;
     color: ${(props) => (props.isDark ? "white" : "black")};
 `;
 
 const SaveButton = styled.TouchableOpacity`
-    /* width: 15%; */
     height: 40px;
     margin: 20px auto;
     justify-content: center;
     align-items: center;
-    /* border-radius: 15px; */
-    /* border-width: 1px; */
-    /* border-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.pointColor)};  */
-    /* background-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.pointColor)};  */
 `;
 
 const SaveButtonText = styled.Text`

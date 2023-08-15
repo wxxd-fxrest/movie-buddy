@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "react-native";
 import DatePicker from 'react-native-date-ranges';
 import { Feather } from "@expo/vector-icons";
 import styled from "styled-components";
@@ -53,7 +52,6 @@ const DateContainer = ({isDark, selected, setSelected}) => {
                         marginBottom: 0,
                     }, 
                 }} 
-                // blockBefore={true}
                 blockAfter={true}
                 centerAlign 
                 allowFontScaling = {false} 
