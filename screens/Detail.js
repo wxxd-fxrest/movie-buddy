@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Alert, StyleSheet, Text, useColorScheme } from "react-native";
+import { Alert, Dimensions, StyleSheet, Text, useColorScheme } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import StarRating from 'react-native-star-rating-widget';
 import { BlurView } from "expo-blur";
@@ -13,6 +13,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import Barcode from '../image/barcode-306926_1280.png';
+
+const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
 
 const Detail = ({ navigation: {setOptions}, route: {params} }) => {
     const isDark = useColorScheme() === 'dark';
@@ -98,7 +100,7 @@ const Detail = ({ navigation: {setOptions}, route: {params} }) => {
                             <ReviewText isDark={isDark}> {params.Data.Review} </ReviewText>
                         </ReviewContainer> */}
                         <BarcodeContainer>
-                            <Text style={{color: 'grey'}}>  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</Text>
+                            <Text style={{color: 'grey'}}>  - - - - - - - - - - - - - - - - - - - - - - - - -</Text>
                             <BarcodeImage isDark={isDark} source={Barcode} />
                             <BarcodeText isDark={isDark}> MovieBuddy </BarcodeText>
                         </BarcodeContainer>
@@ -125,10 +127,9 @@ const Wrapper = styled.View`
     background-color: ${(props) => (props.isDark ? "rgba(58, 73, 87, 0.9)" : "rgba(192, 193, 194, 0.9)")};
     flex-direction: row;
     width: 80%;
-    height: 60%;
-    /* justify-content: center; */
+    height: ${SCREENHEIGHT >= "926" ? "60%" : SCREENHEIGHT >= "852" ? "65%" : SCREENHEIGHT <= "667" ? "80%" : "65%"};
     align-items: center;
-    margin-bottom: 100px;
+    margin-bottom: ${SCREENHEIGHT >= "852" ? "100px" : "10px"};
     border-radius: 20px;
     flex-direction: column;
     padding: 20px 20px;

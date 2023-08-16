@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FlatList } from "react-native";
+import { Dimensions, FlatList } from "react-native";
 import styled from "styled-components";
 import firestore from '@react-native-firebase/firestore';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import TargetDetail from "./TargetDetail";
+
+const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
 
 const TargetList = ({isDark, currentUser}) => {
     const [targetInfo, setTargetInfo] = useState([]);
@@ -45,7 +47,7 @@ const TargetList = ({isDark, currentUser}) => {
 };
 
 const Container = styled.View`
-    height: 65%;
+    height: ${SCREENHEIGHT / 2.2}px;
 `;
 
 const ListHeader = styled.View`

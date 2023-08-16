@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import * as Progress from 'react-native-progress';
+import { Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import firestore from '@react-native-firebase/firestore';
 import styled from "styled-components";
 import { darkTheme, lightTheme } from "../colors";
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+
+const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
 
 const TargetDetail = ({isDark, currentUser, targetInfo}) => {
     const navigation = useNavigation();
@@ -59,7 +62,7 @@ const TargetDetail = ({isDark, currentUser, targetInfo}) => {
                                 : 
                                 10/10
                             }
-                            width={365}
+                            width={SCREENWIDTH / 1.2}
                             height={23}
                             borderRadius={20}
                             color={isDark ? 
@@ -78,7 +81,6 @@ const TargetDetail = ({isDark, currentUser, targetInfo}) => {
 const Container = styled.View``;
 
 const Text = styled.Text`
-    /* background-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.pointColor)}; */
     color: ${(props) => (props.isDark ? "grey" : "darkgrey")};
 `;
 
@@ -116,16 +118,10 @@ const MonthText = styled.Text`
 
 const HappyIcon = styled(MaterialCommunityIcons)`
     color: ${(props) => (props.isDark ? "white" : "black")};
-    /* position: absolute;
-    top: 3px;
-    right: 13px; */
 `;
 
 const SadIcon = styled(FontAwesome5)`
     color: ${(props) => (props.isDark ? "white" : "black")};
-    /* position: absolute;
-    top: 3px;
-    right: 13px; */
 `;
 
 const ProgressContainer = styled.View`

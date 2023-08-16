@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Dimensions } from "react-native";
 import * as Progress from 'react-native-progress'; 
 import firestore from '@react-native-firebase/firestore';
 import styled from "styled-components";
 import { darkTheme, lightTheme } from "../colors";
+
+const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
 
 const ProgressBox = ({isDark, currentUser, movieLength}) => {
     const [targetInfo, setTargetInfo] = useState([]);
@@ -47,7 +50,7 @@ const ProgressBox = ({isDark, currentUser, movieLength}) => {
                             :
                             10/dataTarget
                         }
-                        width={390}
+                        width={SCREENWIDTH/ 1.1}
                         height={20}
                         borderRadius={20}
                         color={isDark ? 
@@ -65,10 +68,7 @@ const ProgressBox = ({isDark, currentUser, movieLength}) => {
 const ProgressBarContainer = styled.View`
     width: 100%;
     background-color: ${(props) => (props.isDark ? "#191f24" : "lightgrey")};
-    /* border: solid 1px white; */
-    height: 80px;
-    flex: 0.1;
-    /* margin-top: 10px; */
+    flex:  ${SCREENHEIGHT <= "667" ? "0.14" : "0.115"}; 
 `;
 
 const ProgressTitle = styled.Text`

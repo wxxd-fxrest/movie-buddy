@@ -1,11 +1,15 @@
 import React from "react";
-import { LayoutAnimation } from "react-native";
+import { Dimensions, LayoutAnimation } from "react-native";
 import styled from "styled-components";
 import { darkTheme, lightTheme } from "../colors";
 import { Feather } from '@expo/vector-icons'; 
 import ProfileIMG from '../image/effacda313633337cb8935be9d9486c2.jpg';
 
+const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
+
+
 const EditBefore = ({isDark, getUserData, getProfileData, setEdit, edit, basicName, setImageUrl2}) => {
+
     return (
         <ProfileContainer isDark={isDark}>
 
@@ -31,16 +35,16 @@ const EditBefore = ({isDark, getUserData, getProfileData, setEdit, edit, basicNa
 const ProfileContainer = styled.View`
     flex-direction: row;
     align-items: center;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     border-bottom-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
-    border-bottom-width: 1;
+    border-bottom-width: 1px;
+    height: ${SCREENHEIGHT <= "667" ? SCREENHEIGHT / 7.5 : SCREENHEIGHT/ 7}px;
 `;
 
 const ProfileImage = styled.Image`
-    width: 100px;
-    height: 100px;
+    width:  ${SCREENHEIGHT <= "667" ? "70px" : "90px"};
+    height: ${SCREENHEIGHT <= "667" ? "70px" : "90px"};
     border-radius: 50px;
-    border: solid 1px ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
 `;
 
 const ProfileName = styled.Text`

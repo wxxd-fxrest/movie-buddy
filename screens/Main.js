@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, useColorScheme } from "react-native";
+import { Dimensions, FlatList, useColorScheme } from "react-native";
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import styled from "styled-components";
@@ -9,6 +9,8 @@ import AddButton from "../components/AddButton";
 import ThisMonth from "./ThisMonth";
 import ProgressBox from "./ProgressBox";
 import FullFilmContainer from "./FullFilmContainer";
+
+const { width: SCREENWIDTH, height : SCREENHEIGHT } = Dimensions.get("window");
 
 const Main = ({navigation, route: {params} }) => {
     const isDark = useColorScheme() === 'dark';
@@ -117,7 +119,7 @@ const Main = ({navigation, route: {params} }) => {
 
 const Container = styled.View`
     flex: 1; 
-    padding-top: 10px;
+    margin: 10px 0px;
 `;
 
 const ImageM = styled.Image`
@@ -129,16 +131,18 @@ const MovieContainer = styled.View`
     width: 100%;
     flex-direction: column;
     padding: 0px 20px;
-    flex: 0.33;
+    flex: ${SCREENHEIGHT >= "926" ? "0.33" : SCREENHEIGHT >= "852" ? "0.4" : SCREENHEIGHT <= "844" ? SCREENHEIGHT <= "667" ? "0.4" : "0.36" : "0.33"}; 
 `;
 
 const TitleBox = styled.View`
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5px;
 `;
 
 const ThisMonthTitle = styled.Text`
+    font-size: 12px;
     color: ${(props) => (props.isDark ? "white" : "black")};
 `;
 

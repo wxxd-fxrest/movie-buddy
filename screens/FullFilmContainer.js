@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { FlatList } from "react-native";
+import { Dimensions, FlatList } from "react-native";
 import styled from "styled-components";
 import { darkTheme } from "../colors";
 import { Feather } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import FullFilm from "./FullFilm";
+
+const { width: SCREENWIDTH, height : SCREENHEIGHT } = Dimensions.get("window");
 
 const FullFilmContainer = ({isDark, frilm, currentUser, setScrollHiden}) => {
     const [isEnabled, setIsEnabled] = useState(false);
@@ -62,15 +64,12 @@ const FullFilmContainer = ({isDark, frilm, currentUser, setScrollHiden}) => {
 };
 
 const FilmBox = styled.View`
-    /* height: 57%; */
-    flex: 0.58;
-    /* margin-top: 10px; */
+    flex: ${SCREENHEIGHT <= "844" ? SCREENHEIGHT <= "667" ? "0.46" : "0.53" : "0.6"}; 
     padding: 0px 20px;
 `;
 
 const FullFilmHeader = styled.View`
     flex-direction: row;
-    /* justify-content: space-between; */
     justify-content: flex-end;
     padding: 10px 0px;
 `;
@@ -80,11 +79,6 @@ const FullFilmTitle = styled.View`
     align-items: center;
     justify-content: center;
 `;
-
-// const FullFilmText = styled.Text`
-//     margin-left: 10px;
-//     color: ${(props) => (props.isDark ? "lightgrey" : "black")};
-// `;
 
 const SwitchButton = styled.Switch`
     margin-left: 5px;

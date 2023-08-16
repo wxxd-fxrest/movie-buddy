@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Alert, LayoutAnimation } from "react-native";
+import { ActivityIndicator, Alert, Dimensions, LayoutAnimation } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
@@ -10,6 +10,8 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';  
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import EditBefore from "./EditBefore";
+
+const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
 
 const ProfileBox = ({isDark, currentUser, getUserData, getProfileData}) => {
     const [basicName, setBasicName] = useState("");
@@ -150,21 +152,18 @@ const Imagee = styled.Image`
 `;
 
 const ProfileContainer = styled.View`
-    /* background-color: yellowgreen; */
     flex-direction: row;
     align-items: center;
-    /* padding: 10px 0px; */
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     border-bottom-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
-    border-bottom-width: 1;
+    border-bottom-width: 1px;
+    height: ${SCREENHEIGHT <= "667" ? SCREENHEIGHT / 7.5 : SCREENHEIGHT/ 7}px;
 `;
 
 const ProfileImage = styled.Image`
-    width: 100px;
-    height: 100px;
+    width:  ${SCREENHEIGHT <= "667" ? "70px" : "90px"};
+    height: ${SCREENHEIGHT <= "667" ? "70px" : "90px"};
     border-radius: 50px;
-    /* margin-right: 30px; */
-    border: solid 1px ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
 `;
 
 const ProfileName = styled.Text`
@@ -175,7 +174,7 @@ const ProfileName = styled.Text`
 
 const ProfileNameInput = styled.TextInput`
     border-bottom-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
-    border-bottom-width: 1;
+    border-bottom-width: 1px;
     width: 30%;
     padding: 10px 3px;
     font-size: 16px;
@@ -189,7 +188,6 @@ const ProfileEdit = styled.TouchableOpacity`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    /* width: max-content; */
     padding: 0px 8px;
     border-radius: 20px;
     border-width: 1px;
@@ -205,31 +203,27 @@ const ProfileEditText = styled.Text`
 
 const EditBackContainer = styled.TouchableOpacity`
     position: absolute;
-    bottom: 30px;
+    bottom: 10px;
     right: 0px;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    /* width: max-content; */
     padding: 0px 8px;
     border-radius: 20px;
     border-width: 1px;
     border: solid 1px ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
 `;
 
-const EditImageBox = styled.TouchableOpacity`
-    /* background-color: yellowgreen; */
-`;
+const EditImageBox = styled.TouchableOpacity``;
 
 const EditImage = styled(ProfileImage)`
-    /* background-color: black; */
     opacity: 0.5;
 `;
 
 const EditImageIcons = styled(MaterialCommunityIcons)`
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: ${SCREENHEIGHT <= "667" ? "15px" : "25px"}; 
+    right: ${SCREENHEIGHT <= "667" ? "15px" : "25px"}; 
     color: ${(props) => (props.isDark ? "white" : "black")};
     box-shadow: ${(props) => (props.isDark ? "1px 1px 5px rgba(255, 255, 255, 0.3)" : "1px 1px 5px rgba(0, 0, 0, 0.3)")};
 `;

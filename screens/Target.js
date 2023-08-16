@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Alert, LayoutAnimation } from "react-native";
+import { Alert, Dimensions, LayoutAnimation } from "react-native";
 import firestore from '@react-native-firebase/firestore';
 import styled from "styled-components";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Ionicons } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import { darkTheme, lightTheme } from "../colors";
+
+const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
 
 const Target = ({isDark, currentUser}) => {
     const [isModalVisible, setModalVisible] = useState(false);
@@ -156,7 +158,7 @@ const TargetContainer = styled.View`
     margin-top: 10px;
     padding-bottom: 10px;
     border-bottom-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
-    border-bottom-width: 1;
+    border-bottom-width: 1px;
 `;
 
 const TargetGuideContainer = styled.View`
@@ -165,9 +167,10 @@ const TargetGuideContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
-    margin-bottom: 10px;
-    padding: 10px;
+    /* height: 60px; */
+    height: ${SCREENHEIGHT / 12.5}px;
+    margin-bottom: 5px;
+    padding: 0px 10px;
     border-radius: 10px;
 `;
 
@@ -212,7 +215,7 @@ const TargetChange = styled.View`
 
 const Title = styled.Text`
     color: ${(props) => (props.isDark ? "white" : "black")};
-    padding: 15px 0px;
+    padding: 12px 0px;
     font-size: 15px;
 `;
 
