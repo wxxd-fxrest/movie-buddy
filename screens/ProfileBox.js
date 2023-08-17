@@ -5,7 +5,7 @@ import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import styled from "styled-components";
 import { darkTheme, lightTheme } from "../colors";
-import ProfileIMG from '../image/effacda313633337cb8935be9d9486c2.jpg';
+import ProfileIMG from '../image/large.png';
 import { Feather } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons';  
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
@@ -44,7 +44,6 @@ const ProfileBox = ({isDark, currentUser, getUserData, getProfileData}) => {
             aspect: [1, 1],
         });
 
-        // console.log(result);
         setImageUrl(result);
         setLoading(true);
 
@@ -57,7 +56,6 @@ const ProfileBox = ({isDark, currentUser, getUserData, getProfileData}) => {
                     IMG_URL = imageUrl ? await reference.getDownloadURL() : null;
             }
             setImageUrl2(IMG_URL);
-            // console.log("IMG_URL", IMG_URL);
             setLoading(false); 
             if(IMG_URL === undefined) {
                 Alert.alert("이미지를 다시 선택해주세요.");
@@ -73,6 +71,11 @@ const ProfileBox = ({isDark, currentUser, getUserData, getProfileData}) => {
             await firestore().collection('Users').doc(`${currentUser.email}`)
                 .collection('UsersData').doc('URL').set({
                 profileImgURL: imageUrl2,
+            });
+        }
+        if(text) {
+            await firestore().collection('Users').doc(`${currentUser.email}`).update({
+                name: text ? text : getUserData.name,
             });
         }
         setEdit(!edit);
@@ -145,12 +148,6 @@ const ProfileBox = ({isDark, currentUser, getUserData, getProfileData}) => {
     )
 };
 
-
-const Imagee = styled.Image`
-    width: 100px;
-    height: 100px;
-`;
-
 const ProfileContainer = styled.View`
     flex-direction: row;
     align-items: center;
@@ -164,12 +161,6 @@ const ProfileImage = styled.Image`
     width:  ${SCREENHEIGHT <= "667" ? "70px" : "90px"};
     height: ${SCREENHEIGHT <= "667" ? "70px" : "90px"};
     border-radius: 50px;
-`;
-
-const ProfileName = styled.Text`
-    color: ${(props) => (props.isDark ? "white" : "black")};
-    padding: 10px 0px;
-    font-size: 15px;
 `;
 
 const ProfileNameInput = styled.TextInput`

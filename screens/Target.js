@@ -25,7 +25,6 @@ const Target = ({isDark, currentUser}) => {
             .collection('TargetData').doc(`${targetMonth}`).onSnapshot(documentSnapshot => {
                 setTargetInfo(documentSnapshot.data());
                 // console.log('User data: ', documentSnapshot.data());
-                // console.log(targetInfo)
         });
     
         return () => subscriber();
@@ -38,15 +37,12 @@ const Target = ({isDark, currentUser}) => {
 
     const onSubmitTargetEditing = async() => {
         if(target) {
-            if(!targetInfo) {
+            if(!targetInfo.target) {
                 await firestore().collection('Users').doc(`${currentUser.email}`)
-                    .collection('TargetData').doc(`${targetMonth}`).set({
-                    target: target,
-                    limit: 3,
-                    Preview: 0,
-                    orderBy: targetMonth, 
+                    .collection('TargetData').doc(`${targetMonth}`).update({
+                        target: target,
                 })
-            } else if(targetInfo.limit) {
+            } else if(targetInfo.target) {
                 Alert.alert(
                     '남은 횟수:' + `${targetInfo.limit}`,
                     '정말로 변경하시겠습니까?',
@@ -87,6 +83,7 @@ const Target = ({isDark, currentUser}) => {
     return(
         <TargetContainer isDark={isDark}>
             <TargetGuideContainer isDark={isDark}>
+
                 <LimitBox>
                     <LimitText isDark={isDark}> 이번 달 목표: </LimitText>
                     <Limit isDark={isDark}> {targetInfo ? targetInfo.target : 0} </Limit>
@@ -96,11 +93,12 @@ const Target = ({isDark, currentUser}) => {
                     <TargetNumber isDark={isDark}> {targetInfo ? targetInfo.limit : 3} </TargetNumber>
                 </TargetNumberBox>
             </TargetGuideContainer>
+
             <TargetChange>
-            {targetInfo.limit === 0 ? <>
+            {targetInfo ? targetInfo.limit === 0 ? <>
                 <Title isDark={isDark}> 목표 변경횟수를 초과하였습니다. </Title>
                 <PlusButton>
-                    <AntDesign name="exclamationcircleo" size={30} 
+                    <AntDesign name="exclamationcircleo" size={20} 
                         color={isDark ? 
                             isModalVisible ? 
                                 darkTheme.selectedDateColor : darkTheme.pointColor 
@@ -147,8 +145,9 @@ const Target = ({isDark, currentUser}) => {
                         </TargetButton>
 
                     </> : null}
-                </>}
+                </> : null} 
             </TargetChange>
+
         </TargetContainer>
     )
 };
@@ -167,7 +166,6 @@ const TargetGuideContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* height: 60px; */
     height: ${SCREENHEIGHT / 12.5}px;
     margin-bottom: 5px;
     padding: 0px 10px;

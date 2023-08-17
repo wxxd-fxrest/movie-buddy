@@ -187,5 +187,4 @@ const NextButtonText = styled.Text`
     font-size: 16px;
 `;
 
-
 export default Login; 

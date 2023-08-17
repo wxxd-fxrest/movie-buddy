@@ -16,7 +16,6 @@ const FullFilmContainer = ({isDark, frilm, currentUser, setScrollHiden}) => {
     const onScroll = (e) => {
         const {contentOffset} = e.nativeEvent;
         setScroll(contentOffset.y);
-        // console.log(scroll);
 
         if(scroll > 0) {
             setScrollHiden(true);

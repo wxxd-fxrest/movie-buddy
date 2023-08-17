@@ -91,3 +91,4 @@ buck-out/
 web-build/
 
 .env
+/image

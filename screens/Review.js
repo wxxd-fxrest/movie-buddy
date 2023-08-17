@@ -11,14 +11,13 @@ import DateContainer from "./DateContainer";
 
 const Review = ({ navigation: {setOptions}, route: {params} }) => {
     const isDark = useColorScheme() === 'dark';
+    const navigation = useNavigation();
+
     const [review, setReview] = useState("");
     const [rating, setRating] = useState(2.5);
     const [selected, setSelected] = useState('');
     const [currentUser, setCurrentUser] = useState({});
     const [targetInfo, setTargetInfo] = useState([]);
-
-    const navigation = useNavigation();
-    // console.log(selected.split('/')[0] + '/' + selected.split('/')[1])
 
     let timestamp = Date.now();
     let date = new Date(timestamp);
@@ -26,14 +25,14 @@ const Review = ({ navigation: {setOptions}, route: {params} }) => {
         date.getFullYear()+ "년 "+
         (date.getMonth()+1)+ "월 " +
         date.getDate()+ "일 ");
+
     let targetMonth = (
         (date.getFullYear()+ "년")+
         ('0' + (date.getMonth() + 1)).slice(-2)+ "월");
+
     let previewDate = (
         (date.getFullYear()+ "/")+
         ('0' + (date.getMonth() + 1)).slice(-2));
-
-        // console.log(previewDate)
 
     useEffect(() => {
         setOptions({
@@ -43,7 +42,6 @@ const Review = ({ navigation: {setOptions}, route: {params} }) => {
 
     useEffect(() => {
         setCurrentUser(auth().currentUser);
-        // console.log("Review =>", currentUser)
     }, [currentUser]);
 
     useEffect(() => {
@@ -143,13 +141,6 @@ const Container = styled.View`
 
 const HeaderBox = styled.View``;
 
-const MovieTitle = styled.Text`
-    font-size: 30px;
-    color: ${(props) => (props.isDark ? "white" : "black")};
-    font-weight: 600;
-    padding: 10px 0px;
-`;
-
 const VoteContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
@@ -169,7 +160,7 @@ const InputContainer = styled.View`
     flex-direction: row;
     margin-top: 10px;
     border-top-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
-    border-top-width: 1;
+    border-top-width: 1px;
 `; 
 
 const SearchInput = styled.TextInput`
@@ -185,11 +176,6 @@ const SaveButton = styled.TouchableOpacity`
     margin: 20px auto;
     justify-content: center;
     align-items: center;
-`;
-
-const SaveButtonText = styled.Text`
-    font-size: 16px;
-    color: white;
 `;
 
 export default Review;

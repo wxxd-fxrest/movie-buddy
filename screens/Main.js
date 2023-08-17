@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Dimensions, FlatList, useColorScheme } from "react-native";
+import { Dimensions, FlatList, Text, useColorScheme } from "react-native";
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import styled from "styled-components";
@@ -18,8 +18,6 @@ const Main = ({navigation, route: {params} }) => {
     const [movieData, setMovieData] = useState([]);
     const [frilm, setFilm] = useState([]);
     const [scrollHiden, setScrollHiden] = useState(false);
-
-    // console.log("params", params);
 
     let timestamp = Date.now()
     let date = new Date(timestamp);
@@ -96,7 +94,7 @@ const Main = ({navigation, route: {params} }) => {
                     renderItem={({item}) => (
                         <ThisMonth isDark={isDark} item={item} />
                     )} 
-                />
+                /> 
             </MovieContainer>
             
             <ProgressBox isDark={isDark} 

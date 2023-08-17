@@ -20,8 +20,6 @@ const Write = () => {
             enabled: false,
     });
 
-    // console.log("movieData", movieData.total_results);
-
     const onChangeText = (text) => setQuery(text);
 
     const onSubmit = () => {

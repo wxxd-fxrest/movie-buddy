@@ -23,7 +23,6 @@ const TargetDetail = ({isDark, currentUser, targetInfo}) => {
                 setTargetData(documentSnapshot.data());
                 setMonth(documentSnapshot.id);
                 // console.log('User data: ', documentSnapshot.data());
-                // console.log(targetData.Preview);
         });
         
         return () => subscriber();
@@ -99,7 +98,6 @@ const Preparing = styled.Text`
 const ProgressBox = styled.TouchableOpacity`
     flex-direction: column;
     justify-content: center;
-    /* background-color: yellowgreen; */
     margin-top: 10px;
     margin-bottom: 10px;
 `;

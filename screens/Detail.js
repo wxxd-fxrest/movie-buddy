@@ -8,7 +8,6 @@ import Poster from "../components/Poster";
 import { makeImgPath } from "../untils";
 import styled from "styled-components";
 import { darkTheme, lightTheme } from "../colors";
-import { FontAwesome } from '@expo/vector-icons'; 
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
@@ -75,13 +74,13 @@ const Detail = ({ navigation: {setOptions}, route: {params} }) => {
                     </MoreIcon>
                     <Header>
                         <Poster path={params.Data.PosterImage} />
-                        <ReviewContainer2 isDark={isDark}>
+                        <ReviewContainer isDark={isDark}>
                             <ReviewBox>
                                 <MaterialIcons name="rate-review" size={22} color={isDark ? "white" : "black"} />
                                 <ReviewTitle isDark={isDark}> 리뷰 </ReviewTitle>
                             </ReviewBox>
                             <ReviewText isDark={isDark}> {params.Data.Review} </ReviewText>
-                        </ReviewContainer2>
+                        </ReviewContainer>
                     </Header>
                     <Column>
                         <VoteContainer>
@@ -95,12 +94,8 @@ const Detail = ({ navigation: {setOptions}, route: {params} }) => {
                                 <CalendarText isDark={isDark}> {params.Data.Calendar} </CalendarText>
                             </CalendarBox>
                         </VoteContainer>
-                        {/* <ReviewContainer isDark={isDark}>
-                            <ReviewTitle isDark={isDark}> 내가 남긴 리뷰 </ReviewTitle>
-                            <ReviewText isDark={isDark}> {params.Data.Review} </ReviewText>
-                        </ReviewContainer> */}
                         <BarcodeContainer>
-                            <Text style={{color: 'grey'}}>  - - - - - - - - - - - - - - - - - - - - - - - - -</Text>
+                            <Text style={{color: 'grey'}}> - - - - - - - - - - - - - - - - - - - - - - - - - </Text>
                             <BarcodeImage isDark={isDark} source={Barcode} />
                             <BarcodeText isDark={isDark}> MovieBuddy </BarcodeText>
                         </BarcodeContainer>
@@ -142,7 +137,6 @@ const MoreIcon = styled.TouchableOpacity`
 `;
 
 const Title = styled.Text`
-    /* background-color: yellowgreen; */
     color: ${(props) => (props.isDark ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)")};
     font-size: 18px;
     font-weight: 600;
@@ -155,21 +149,14 @@ const Header = styled.View`
 `;
 
 const Column = styled.View`
-    /* background-color: yellowgreen; */
-    /* width: 40%; */
-    /* margin-left: 15px; */
     width: 100%;
     padding: 5% 0px;
 `;
 
-const VerticalStar = styled(FontAwesome)``;
-
 const VoteContainer = styled.View`
-    /* background-color: white; */
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* margin: 10px 0px; */
     padding: 15px 0px;
 `;
 
@@ -187,15 +174,6 @@ const CalendarText = styled.Text`
 const StyledStarRating = styled(StarRating)``;
 
 const ReviewContainer = styled.View`
-    /* background-color: yellowgreen; */
-    padding-bottom: 30px;
-    border-bottom-color: ${(props) => (props.isDark ? darkTheme.pointColor : lightTheme.lightGreyColor)};
-    border-bottom-width: 1;
-    padding-top: 3%;
-    height: 40%;
-`;
-
-const ReviewContainer2 = styled.View`
     color: ${(props) => (props.isDark ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)")};
     width: 60%;
     padding-left: 15px;
@@ -203,7 +181,6 @@ const ReviewContainer2 = styled.View`
 
 const ReviewBox = styled.View`
     flex-direction: row;
-    /* background-color: yellowgreen; */
     justify-content: flex-end;
     align-items: center;
     margin-bottom: 5px;
@@ -212,7 +189,6 @@ const ReviewBox = styled.View`
 const ReviewTitle = styled.Text`
     color: ${(props) => (props.isDark ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)")};
     font-size: 13px;
-    /* padding-bottom: 10px; */
 `;
 
 const ReviewText = styled.Text`
@@ -233,7 +209,6 @@ const BarcodeImage = styled.Image`
 
 const BarcodeText = styled.Text`
     color: ${(props) => (props.isDark ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)")};
-    /* padding: 8px 0px; */
     font-size: 12px;
     padding-top: 10px;
 `;

@@ -12,7 +12,6 @@ const NativeStack = createNativeStackNavigator();
 
 const Stack = () => {
     const isDark = useColorScheme() === 'dark';
-    // console.log(isDark)
 
     return (
         <NativeStack.Navigator 

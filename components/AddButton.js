@@ -18,7 +18,7 @@ const AddButton = () => {
         ('0' + (date.getMonth() + 1)).slice(-2)+ "월");
 
     const goDetail = () => {
-        if(targetInfo === undefined) {
+        if(targetInfo.target === undefined) {
             Alert.alert("이 달 목표를 먼저 설정해주세요.");
         } else {
             navigation.navigate("Stack", {screen: "Write"});

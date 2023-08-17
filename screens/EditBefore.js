@@ -3,13 +3,11 @@ import { Dimensions, LayoutAnimation } from "react-native";
 import styled from "styled-components";
 import { darkTheme, lightTheme } from "../colors";
 import { Feather } from '@expo/vector-icons'; 
-import ProfileIMG from '../image/effacda313633337cb8935be9d9486c2.jpg';
+import ProfileIMG from '../image/large.png';
 
 const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
 
-
 const EditBefore = ({isDark, getUserData, getProfileData, setEdit, edit, basicName, setImageUrl2}) => {
-
     return (
         <ProfileContainer isDark={isDark}>
 

@@ -17,8 +17,6 @@ const Tab = () => {
     const goDetail = () => {
         navigation.navigate("Stack", {screen: "Setup"});
     };
-    // const [scrollHiden, setScrollHiden] = useState(false);
-
 
     return (
         <NativeTab.Navigator
@@ -26,8 +24,7 @@ const Tab = () => {
                 unmountOnBlur: true, 
                 tabBarShowLabel: false,
                 tabBarStyle: {
-                    // display: "none", 
-                    backgroundColor: isDark ? darkTheme.backColor : lightTheme.headerColor
+                    backgroundColor: isDark ? darkTheme.backColor : lightTheme.headerColor,
                 },
                 tabBarActiveTintColor: "white",
                 tabBarInactiveTintColor: colors.lightGreyColor,

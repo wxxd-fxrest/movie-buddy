@@ -10,23 +10,17 @@ const {width: SCREENWIDTH, height : SCREENHEIGHT} = Dimensions.get("window");
 const ProgressBox = ({isDark, currentUser, movieLength}) => {
     const [targetInfo, setTargetInfo] = useState([]);
     const [dataTarget, setdataTarget] = useState(0);
-    // console.log(movieLength)
 
     let timestamp = Date.now();
     let date = new Date(timestamp);
     let targetMonth = (
         (date.getFullYear()+ "년")+
-        ('0' + (date.getMonth() + 1)).slice(-2)+ "월")
-
-    // console.log(targetMonth)
-
+        ('0' + (date.getMonth() + 1)).slice(-2)+ "월");
 
     useEffect(() => {
         const subscriber = firestore().collection('Users').doc(`${currentUser.email}`)
             .collection('TargetData').doc(`${targetMonth}`).onSnapshot(documentSnapshot => {
                 setTargetInfo(documentSnapshot.data());
-                // console.log('User data: ', documentSnapshot.data());
-                // console.log(targetInfo.target)
                 if(targetInfo !== undefined) {
                     setdataTarget(targetInfo.target);
                 }
@@ -48,7 +42,7 @@ const ProgressBox = ({isDark, currentUser, movieLength}) => {
                         progress={movieLength !== 0 ? 
                             movieLength/dataTarget
                             :
-                            10/dataTarget
+                            1/dataTarget
                         }
                         width={SCREENWIDTH/ 1.1}
                         height={20}

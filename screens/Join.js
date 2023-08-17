@@ -12,6 +12,12 @@ const Join = ({navigation: {navigate}}) => {
     const passwordInput = useRef();
     const isDark = useColorScheme() === 'dark';
 
+    let timestamp = Date.now();
+    let date = new Date(timestamp);
+    let targetMonth = (
+        (date.getFullYear()+ "년")+
+        ('0' + (date.getMonth() + 1)).slice(-2)+ "월");
+
     const onSubmitEmailEditing = () => {
         passwordInput.current.focus();
     };
@@ -25,14 +31,20 @@ const Join = ({navigation: {navigate}}) => {
             return; 
         }
 
-        setLoading(true);
-        
         try {
             const userCredential = await auth().createUserWithEmailAndPassword(email, password); 
-            firestore().collection('Users').doc(`${userCredential.user.email}`).set({
-              email: `${userCredential.user.email}`,
+            await firestore().collection('Users').doc(`${userCredential.user.email}`).set({
+                email: `${userCredential.user.email}`,
+                name: `${userCredential.user.email.split('@')[0]}`
+            })
+            await firestore()
+                .collection('Users').doc(`${userCredential.user.email}`)
+                .collection('TargetData').doc(`${targetMonth}`).set({
+                limit: 3,
+                Preview: 0,
+                orderBy: targetMonth, 
             }).then(() => {
-              console.log('User added!');
+                console.log('User added!');
             });
         } catch(e) {
             switch (e.code) {

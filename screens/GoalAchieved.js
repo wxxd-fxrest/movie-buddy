@@ -8,9 +8,10 @@ import Poster from "../components/Poster";
 import { darkTheme, lightTheme } from "../colors";
 
 const GoalAchieved = ({ navigation: {setOptions}, route: {params} }) => {
-    const [goalAchieved, setGoalAchieved] = useState([]);
     const isDark = useColorScheme() === 'dark';
     const navigation = useNavigation();
+
+    const [goalAchieved, setGoalAchieved] = useState([]);
 
     useEffect(() => {
         setOptions({

@@ -23,7 +23,6 @@ const FullFilm = ({ID, isEnabled, currentUser, isDark}) => {
                         DocID: doc.id, 
                         Data: doc.data(),
                     })
-                    // console.log(doc.id, doc.data());
                 });
                 setMovieData(feedArray);
                 // console.log(feedArray);

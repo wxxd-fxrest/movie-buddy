@@ -7,8 +7,6 @@ import ProfileIMG from '../image/effacda313633337cb8935be9d9486c2.jpg';
 const ProfileEdit = ({ navigation: {setOptions}, route: {params} }) => {
     const isDark = useColorScheme() === 'dark';
 
-    // console.log(params)
-
     return(
         <Container>
             <ProfileImage isDark={isDark} source={ProfileIMG} />
