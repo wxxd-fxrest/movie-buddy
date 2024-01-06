@@ -1,4 +1,4 @@
-## Movie-Buddy
+## Movie-Buddy
 React-Native + Firebase + Api (01)
 
 > 주요기능
@@ -9,3 +9,5 @@ React-Native + Firebase + Api (01)
 + 회원가입 / 로그인
   소셜 로그인
   회원 정보 수정
+
+![REDME_MovieBuddy](https://github.com/wxxd-fxrest/movie-buddy/blob/master/REDME_MovieBuddy.png)
