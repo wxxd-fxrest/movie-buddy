@@ -10,6 +10,6 @@ React-Native + Firebase + Api (01)
   소셜 로그인
   회원 정보 수정
 
-Notion(https://www.notion.so/Movie-Buddy-154c87f7029c4a15a3330e30895a3342?pvs=4)
+[Notion](https://www.notion.so/Movie-Buddy-154c87f7029c4a15a3330e30895a3342?pvs=4)
 
 ![REDME_MovieBuddy](https://github.com/wxxd-fxrest/movie-buddy/blob/master/REDME_MovieBuddy.png)
